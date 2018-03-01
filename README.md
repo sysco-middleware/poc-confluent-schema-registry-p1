@@ -1,0 +1,1 @@
+# Kafka Schema registry poc
