@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 /** Business record contains name of company and list of customers */
 @org.apache.avro.specific.AvroGenerated
 public class Business extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7766710145260165726L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Business\",\"namespace\":\"no.sysco.middleware.poc.kafkaschemaregistry.avro\",\"doc\":\"Business record contains name of company and list of customers\",\"fields\":[{\"name\":\"company_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Name of company\"},{\"name\":\"company_telephone\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Name of company\"},{\"name\":\"customers\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Customer\",\"fields\":[{\"name\":\"first_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Customer name\"},{\"name\":\"last_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Customer last name\"}]}},\"doc\":\"List of customers\"}],\"version\":\"2\"}");
+  private static final long serialVersionUID = -1756169051181678605L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Business\",\"namespace\":\"no.sysco.middleware.poc.kafkaschemaregistry.avro\",\"doc\":\"Business record contains name of company and list of customers\",\"fields\":[{\"name\":\"company_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Name of company\"},{\"name\":\"customers\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Customer\",\"fields\":[{\"name\":\"first_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Customer name\"},{\"name\":\"last_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Customer last name\"}]}},\"doc\":\"List of customers\"}],\"version\":\"1\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -54,8 +54,6 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
 
   /** Name of company */
    private java.lang.String company_name;
-  /** Name of company */
-   private java.lang.String company_telephone;
   /** List of customers */
    private java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer> customers;
 
@@ -69,12 +67,10 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
   /**
    * All-args constructor.
    * @param company_name Name of company
-   * @param company_telephone Name of company
    * @param customers List of customers
    */
-  public Business(java.lang.String company_name, java.lang.String company_telephone, java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer> customers) {
+  public Business(java.lang.String company_name, java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer> customers) {
     this.company_name = company_name;
-    this.company_telephone = company_telephone;
     this.customers = customers;
   }
 
@@ -83,8 +79,7 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return company_name;
-    case 1: return company_telephone;
-    case 2: return customers;
+    case 1: return customers;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -94,8 +89,7 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: company_name = (java.lang.String)value$; break;
-    case 1: company_telephone = (java.lang.String)value$; break;
-    case 2: customers = (java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer>)value$; break;
+    case 1: customers = (java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -106,15 +100,6 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
    */
   public java.lang.String getCompanyName() {
     return company_name;
-  }
-
-
-  /**
-   * Gets the value of the 'company_telephone' field.
-   * @return Name of company
-   */
-  public java.lang.String getCompanyTelephone() {
-    return company_telephone;
   }
 
 
@@ -161,8 +146,6 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
 
     /** Name of company */
     private java.lang.String company_name;
-    /** Name of company */
-    private java.lang.String company_telephone;
     /** List of customers */
     private java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer> customers;
 
@@ -181,13 +164,9 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
         this.company_name = data().deepCopy(fields()[0].schema(), other.company_name);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.company_telephone)) {
-        this.company_telephone = data().deepCopy(fields()[1].schema(), other.company_telephone);
+      if (isValidValue(fields()[1], other.customers)) {
+        this.customers = data().deepCopy(fields()[1].schema(), other.customers);
         fieldSetFlags()[1] = true;
-      }
-      if (isValidValue(fields()[2], other.customers)) {
-        this.customers = data().deepCopy(fields()[2].schema(), other.customers);
-        fieldSetFlags()[2] = true;
       }
     }
 
@@ -201,13 +180,9 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
         this.company_name = data().deepCopy(fields()[0].schema(), other.company_name);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.company_telephone)) {
-        this.company_telephone = data().deepCopy(fields()[1].schema(), other.company_telephone);
+      if (isValidValue(fields()[1], other.customers)) {
+        this.customers = data().deepCopy(fields()[1].schema(), other.customers);
         fieldSetFlags()[1] = true;
-      }
-      if (isValidValue(fields()[2], other.customers)) {
-        this.customers = data().deepCopy(fields()[2].schema(), other.customers);
-        fieldSetFlags()[2] = true;
       }
     }
 
@@ -255,49 +230,6 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
     }
 
     /**
-      * Gets the value of the 'company_telephone' field.
-      * Name of company
-      * @return The value.
-      */
-    public java.lang.String getCompanyTelephone() {
-      return company_telephone;
-    }
-
-    /**
-      * Sets the value of the 'company_telephone' field.
-      * Name of company
-      * @param value The value of 'company_telephone'.
-      * @return This builder.
-      */
-    public no.sysco.middleware.poc.kafkaschemaregistry.avro.Business.Builder setCompanyTelephone(java.lang.String value) {
-      validate(fields()[1], value);
-      this.company_telephone = value;
-      fieldSetFlags()[1] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'company_telephone' field has been set.
-      * Name of company
-      * @return True if the 'company_telephone' field has been set, false otherwise.
-      */
-    public boolean hasCompanyTelephone() {
-      return fieldSetFlags()[1];
-    }
-
-
-    /**
-      * Clears the value of the 'company_telephone' field.
-      * Name of company
-      * @return This builder.
-      */
-    public no.sysco.middleware.poc.kafkaschemaregistry.avro.Business.Builder clearCompanyTelephone() {
-      company_telephone = null;
-      fieldSetFlags()[1] = false;
-      return this;
-    }
-
-    /**
       * Gets the value of the 'customers' field.
       * List of customers
       * @return The value.
@@ -313,9 +245,9 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
       * @return This builder.
       */
     public no.sysco.middleware.poc.kafkaschemaregistry.avro.Business.Builder setCustomers(java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer> value) {
-      validate(fields()[2], value);
+      validate(fields()[1], value);
       this.customers = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -325,7 +257,7 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
       * @return True if the 'customers' field has been set, false otherwise.
       */
     public boolean hasCustomers() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[1];
     }
 
 
@@ -336,7 +268,7 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
       */
     public no.sysco.middleware.poc.kafkaschemaregistry.avro.Business.Builder clearCustomers() {
       customers = null;
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -346,8 +278,7 @@ public class Business extends org.apache.avro.specific.SpecificRecordBase implem
       try {
         Business record = new Business();
         record.company_name = fieldSetFlags()[0] ? this.company_name : (java.lang.String) defaultValue(fields()[0]);
-        record.company_telephone = fieldSetFlags()[1] ? this.company_telephone : (java.lang.String) defaultValue(fields()[1]);
-        record.customers = fieldSetFlags()[2] ? this.customers : (java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer>) defaultValue(fields()[2]);
+        record.customers = fieldSetFlags()[1] ? this.customers : (java.util.List<no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer>) defaultValue(fields()[1]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
