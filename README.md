@@ -5,7 +5,20 @@ Run docker with image: [landoop/fast-data-dev](https://github.com/Landoop/fast-d
 `docker-compose up -d`  
 
 Image contains Kafka, Zookeeper, Schema Registry, Kafka-Connect, Landoop Tools, 20+ connectors.  
-SchemaRegistry node provide RESTapi and stores all schemas versions.    
+SchemaRegistry node provide RESTapi and stores all schemas versions.   
+NB! To up container from this image, takes aprox. 1-3 mins. 
+
+## Schema evolution at work
+Run docker compose before these steps:
+1. `./mvnw clean install`
+2. Execute `KafkaAvroProducerV1`
+3. Execute `KafkaAvroConsumerV1`
+4. Check in browser `localhost:3030` topic: business-avro and schema registry for the same topic.
+5. Refactor `resources/avro/business-v2.md` to `resources/avro/business-v2.md`
+6. `./mvnw clean install`
+7. Uncomment and execute `KafkaAvroProducerV2`
+8. Repeat step 3 and 4
+
 ## Data types
 Primitive types
 
@@ -31,7 +44,7 @@ Complex types
 | Other Schema as a type   | {"name":"employee", "type":"Employee"} |  
 
 ## How to create schema
-1. Directly in code from
+1. Directly in code
 ```java
   Schema.Parser parser = new Schema.Parser();
   Schema schema = parser.parse("{\n"
