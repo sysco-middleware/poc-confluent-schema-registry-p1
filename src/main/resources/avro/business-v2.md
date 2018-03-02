@@ -18,7 +18,7 @@
             "fields":[
               { "name": "first_name", "type": "string", "doc":"Customer name" },
               { "name": "last_name", "type": "string", "doc": "Customer last name" },
-              { "name": "middle_name", "type":["null", "string"] "doc": "Customer middle name" }
+              { "name": "middle_name", "type":["null", "string"], "doc": "Customer middle name", "default":null }
             ]
           }
         }

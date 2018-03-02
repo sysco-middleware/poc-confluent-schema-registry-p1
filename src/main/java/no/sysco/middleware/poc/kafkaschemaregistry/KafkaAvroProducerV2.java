@@ -29,23 +29,24 @@
 //
 //
 //    // copied from avro examples
-//    Customer c1 = Customer.newBuilder()
+//    Customer c2 = Customer.newBuilder()
 //        .setFirstName("some-first-name-v1")
 //        .setLastName("some-last-name-v1")
+//        .setMiddleName("abra-kadabra")
 //        .build();
 //
-//    Business business = Business.newBuilder()
+//    Business business2 = Business.newBuilder()
 //        .setCompanyName("some-company-name-v1")
 //        .setCompanyTelephone("143252")
-//        .setCustomers(Arrays.asList(c1))
+//        .setCustomers(Arrays.asList(c2))
 //        .build();
 //
 //
 //    ProducerRecord<String, Business> producerRecord = new ProducerRecord<String, Business>(
-//        Utils.TOPIC, business
+//        Utils.TOPIC, business2
 //    );
 //
-//    System.out.println(business);
+//    System.out.println(business2);
 //    producer.send(producerRecord, new Callback() {
 //      @Override
 //      public void onCompletion(RecordMetadata metadata, Exception exception) {
