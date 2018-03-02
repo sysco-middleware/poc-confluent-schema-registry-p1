@@ -4,7 +4,8 @@ Run docker with image: [landoop/fast-data-dev](https://github.com/Landoop/fast-d
 
 `docker-compose up -d`  
 
-Image contains Kafka, Zookeeper, Schema Registry, Kafka-Connect, Landoop Tools, 20+ connectors.
+Image contains Kafka, Zookeeper, Schema Registry, Kafka-Connect, Landoop Tools, 20+ connectors.  
+SchemaRegistry node provide RESTapi and stores all schemas versions.    
 ## Data types
 Primitive types
 
