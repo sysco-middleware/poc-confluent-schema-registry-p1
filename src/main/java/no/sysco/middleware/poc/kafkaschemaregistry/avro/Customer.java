@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Customer extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 7614776952725657346L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Customer\",\"namespace\":\"no.sysco.middleware.poc.kafkaschemaregistry.avro\",\"fields\":[{\"name\":\"first_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Customer name\"},{\"name\":\"last_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Customer last name\"}]}");
+  private static final long serialVersionUID = 5437178722850327176L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Customer\",\"namespace\":\"no.sysco.middleware.poc.kafkaschemaregistry.avro\",\"fields\":[{\"name\":\"first_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Customer name\"},{\"name\":\"last_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Customer last name\"},{\"name\":\"middle_name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"doc\":\"Customer middle name\",\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -55,6 +55,8 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
    private java.lang.String first_name;
   /** Customer last name */
    private java.lang.String last_name;
+  /** Customer middle name */
+   private java.lang.String middle_name;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -67,10 +69,12 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
    * All-args constructor.
    * @param first_name Customer name
    * @param last_name Customer last name
+   * @param middle_name Customer middle name
    */
-  public Customer(java.lang.String first_name, java.lang.String last_name) {
+  public Customer(java.lang.String first_name, java.lang.String last_name, java.lang.String middle_name) {
     this.first_name = first_name;
     this.last_name = last_name;
+    this.middle_name = middle_name;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -79,6 +83,7 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
     switch (field$) {
     case 0: return first_name;
     case 1: return last_name;
+    case 2: return middle_name;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -89,6 +94,7 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
     switch (field$) {
     case 0: first_name = (java.lang.String)value$; break;
     case 1: last_name = (java.lang.String)value$; break;
+    case 2: middle_name = (java.lang.String)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -108,6 +114,15 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
    */
   public java.lang.String getLastName() {
     return last_name;
+  }
+
+
+  /**
+   * Gets the value of the 'middle_name' field.
+   * @return Customer middle name
+   */
+  public java.lang.String getMiddleName() {
+    return middle_name;
   }
 
 
@@ -147,6 +162,8 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
     private java.lang.String first_name;
     /** Customer last name */
     private java.lang.String last_name;
+    /** Customer middle name */
+    private java.lang.String middle_name;
 
     /** Creates a new Builder */
     private Builder() {
@@ -167,6 +184,10 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
         this.last_name = data().deepCopy(fields()[1].schema(), other.last_name);
         fieldSetFlags()[1] = true;
       }
+      if (isValidValue(fields()[2], other.middle_name)) {
+        this.middle_name = data().deepCopy(fields()[2].schema(), other.middle_name);
+        fieldSetFlags()[2] = true;
+      }
     }
 
     /**
@@ -182,6 +203,10 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
       if (isValidValue(fields()[1], other.last_name)) {
         this.last_name = data().deepCopy(fields()[1].schema(), other.last_name);
         fieldSetFlags()[1] = true;
+      }
+      if (isValidValue(fields()[2], other.middle_name)) {
+        this.middle_name = data().deepCopy(fields()[2].schema(), other.middle_name);
+        fieldSetFlags()[2] = true;
       }
     }
 
@@ -271,6 +296,49 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
       return this;
     }
 
+    /**
+      * Gets the value of the 'middle_name' field.
+      * Customer middle name
+      * @return The value.
+      */
+    public java.lang.String getMiddleName() {
+      return middle_name;
+    }
+
+    /**
+      * Sets the value of the 'middle_name' field.
+      * Customer middle name
+      * @param value The value of 'middle_name'.
+      * @return This builder.
+      */
+    public no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer.Builder setMiddleName(java.lang.String value) {
+      validate(fields()[2], value);
+      this.middle_name = value;
+      fieldSetFlags()[2] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'middle_name' field has been set.
+      * Customer middle name
+      * @return True if the 'middle_name' field has been set, false otherwise.
+      */
+    public boolean hasMiddleName() {
+      return fieldSetFlags()[2];
+    }
+
+
+    /**
+      * Clears the value of the 'middle_name' field.
+      * Customer middle name
+      * @return This builder.
+      */
+    public no.sysco.middleware.poc.kafkaschemaregistry.avro.Customer.Builder clearMiddleName() {
+      middle_name = null;
+      fieldSetFlags()[2] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public Customer build() {
@@ -278,6 +346,7 @@ public class Customer extends org.apache.avro.specific.SpecificRecordBase implem
         Customer record = new Customer();
         record.first_name = fieldSetFlags()[0] ? this.first_name : (java.lang.String) defaultValue(fields()[0]);
         record.last_name = fieldSetFlags()[1] ? this.last_name : (java.lang.String) defaultValue(fields()[1]);
+        record.middle_name = fieldSetFlags()[2] ? this.middle_name : (java.lang.String) defaultValue(fields()[2]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
