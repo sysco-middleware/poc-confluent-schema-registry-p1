@@ -11,13 +11,10 @@ NB! To up container from this image, takes aprox. 1-3 mins.
 ## Schema evolution at work
 Run docker compose before these steps:
 1. `./mvnw clean install`
-2. Execute `KafkaAvroProducerV1`
-3. Execute `KafkaAvroConsumerV1`
-4. Check in browser `localhost:3030` topic: business-avro and schema registry for the same topic.
-5. Refactor `resources/avro/business-v2.md` to `resources/avro/business-v2.md`
-6. `./mvnw clean install`
-7. Uncomment and execute `KafkaAvroProducerV2`
-8. Repeat step 3 and 4
+2. Execute KafkaAvroProducerV1 to produce message with V1
+3. Execute KafkaAvroProducerV2 to produce message with V2
+4. Try different consumers to consume messages with different versions
+
 
 ## Data types
 Primitive types
