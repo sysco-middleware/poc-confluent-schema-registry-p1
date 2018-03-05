@@ -1,12 +1,14 @@
 # Kafka Schema registry poc
 ## How to run
-Run docker with image: [landoop/fast-data-dev](https://github.com/Landoop/fast-data-dev) 
-
-`docker-compose up -d`  
-
+Two options : 
+1. Run docker with image: [landoop/fast-data-dev](https://github.com/Landoop/fast-data-dev)     
+`docker-compose -f docker-compose.landoop up -d`   
 Image contains Kafka, Zookeeper, Schema Registry, Kafka-Connect, Landoop Tools, 20+ connectors.  
 SchemaRegistry node provide RESTapi and stores all schemas versions.   
 NB! To up container from this image, takes aprox. 1-3 mins. 
+  
+2. Plain kafka, schema registry, zookeeper and proxy  
+`docker-compose -f docker-compose.confluent.yml up -d`
 
 ## Schema evolution at work
 Run docker compose before these steps:
