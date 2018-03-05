@@ -25,7 +25,7 @@ public class KafkaAvroConsumerV1 {
     properties.setProperty("specific.avro.reader", "true");
 
     KafkaConsumer<String, Business> kafkaConsumer = new KafkaConsumer<>(properties);
-    kafkaConsumer.subscribe(Collections.singleton(Utils.TOPIC));
+    kafkaConsumer.subscribe(Collections.singleton("business-avro"));
 
     while (true){
       ConsumerRecords<String, Business> records = kafkaConsumer.poll(1000);
@@ -38,3 +38,4 @@ public class KafkaAvroConsumerV1 {
     }
   }
 }
+

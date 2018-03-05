@@ -41,7 +41,7 @@ public class KafkaAvroProducerV1 {
 
 
     ProducerRecord<String, Business> producerRecord = new ProducerRecord<String, Business>(
-        Utils.TOPIC, business
+        "business-avro", business
     );
 
     System.out.println(business);
