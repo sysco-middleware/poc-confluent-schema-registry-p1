@@ -1,4 +1,7 @@
 # Kafka Schema registry poc
+* Schema stored external (not in kafka)
+* Reduce message size (messages serialized) 
+* If schema registry not available, breaks everything (critical component)
 ## How to run
 Two options : 
 1. Run docker with image: [landoop/fast-data-dev](https://github.com/Landoop/fast-data-dev)     
@@ -44,7 +47,7 @@ Complex types
 
 ## How to create schema
 1. Directly in code
-```java
+```
   Schema.Parser parser = new Schema.Parser();
   Schema schema = parser.parse("{\n"
     + "   \"type\": \"record\",\n"
@@ -74,11 +77,11 @@ Complex types
 ``` 
 
 2. Reflection - from POJO
-```java
+```
   Schema schema = ReflectData.get().getSchema(Business.class);
 ```  
 Business class
-```java
+```
 public class Business {
     private String companyName;
     public Business(){}
@@ -89,7 +92,7 @@ public class Business {
 3. From AVSC file (json) via plugin
 Define schema in `resources/avro` and generate via `avro-maven-plugin`
 
-### Schema evolution
+## Schema evolution
 | Type          | Description | 
 | ------------- |:-------------:| 
 | Backward | Old schema can be used to read New data | 
@@ -106,6 +109,20 @@ Target is type `Full compatibility`.
 5. When evolving schema, ALWAYS give default values
 6. When evolving schema, NEVER remove, rename of the required field or change the type  
 
+## Compatibility changes
+#### Forward (common)
+* Update producer to next version
+* Takes time to update consumers
+#### Backward
+* Update all producers, but still able to read previous version producer data
+* When all consumers update, update all producers
+
+## [REST Proxy](https://docs.confluent.io/current/kafka-rest/docs/index.html)
+TODO:
+1. GET /topics && /topics/{topic_name}
+2. Can produce data via REST Proxy (Binary, Json and Avro)
+3. Consume (not easy)
+4. Produce (1 post request)
 ## Refs:  
 * [Confluent docs](https://docs.confluent.io/current/schema-registry/docs/api.html#overview)
 * [Stephane Maarek](https://www.udemy.com/confluent-schema-registry/learn/v4/content)
