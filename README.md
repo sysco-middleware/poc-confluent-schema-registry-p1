@@ -1,9 +1,12 @@
 # Kafka Schema registry poc
+
 * Schema stored external (not in kafka)
 * Reduce message size (messages serialized) 
 * If schema registry not available, breaks everything (critical component)
+
 ## How to run
-Two options : 
+
+Two options (docker ONLY) : 
 1. Run docker with image: [landoop/fast-data-dev](https://github.com/Landoop/fast-data-dev)     
 `docker-compose -f docker-compose.landoop up -d`   
 Image contains Kafka, Zookeeper, Schema Registry, Kafka-Connect, Landoop Tools, 20+ connectors.  
@@ -14,6 +17,7 @@ NB! To up container from this image, takes aprox. 1-3 mins.
 `docker-compose -f docker-compose.confluent.yml up -d`
 
 ## Schema evolution at work
+
 Run docker compose before these steps:
 1. `./mvnw clean install`
 2. Execute KafkaAvroProducerV1 to produce message with V1
@@ -22,6 +26,7 @@ Run docker compose before these steps:
 
 
 ## Data types
+
 Primitive types
 
 | Type          | Description | 
@@ -46,7 +51,9 @@ Complex types
 | Other Schema as a type   | {"name":"employee", "type":"Employee"} |  
 
 ## How to create schema
-1. Directly in code
+
+1. In code
+
 ```
   Schema.Parser parser = new Schema.Parser();
   Schema schema = parser.parse("{\n"
@@ -77,10 +84,13 @@ Complex types
 ``` 
 
 2. Reflection - from POJO
+
 ```
   Schema schema = ReflectData.get().getSchema(Business.class);
 ```  
+
 Business class
+
 ```
 public class Business {
     private String companyName;
@@ -89,10 +99,12 @@ public class Business {
     // getters & setters
 }
 ```
+
 3. From AVSC file (json) via plugin
 Define schema in `resources/avro` and generate via `avro-maven-plugin`
 
 ## Schema evolution
+
 | Type          | Description | 
 | ------------- |:-------------:| 
 | Backward | Old schema can be used to read New data | 
@@ -102,6 +114,7 @@ Define schema in `resources/avro` and generate via `avro-maven-plugin`
 Target is type `Full compatibility`. 
 
 ## Important notes
+
 1. Make your primary key required
 2. Give default values to all the fields that could be removed in the future
 3. Be very careful when using ENUM as the can not evolve over time
@@ -110,21 +123,21 @@ Target is type `Full compatibility`.
 6. When evolving schema, NEVER remove, rename of the required field or change the type  
 
 ## Compatibility changes
+
 #### Forward (common)
+
 * Update producer to next version
 * Takes time to update consumers
+
 #### Backward
+
 * Update all producers, but still able to read previous version producer data
 * When all consumers update, update all producers
 
-## [REST Proxy](https://docs.confluent.io/current/kafka-rest/docs/index.html)
-TODO:
-1. GET /topics && /topics/{topic_name}
-2. Can produce data via REST Proxy (Binary, Json and Avro)
-3. Consume (not easy)
-4. Produce (1 post request)
-## Refs:  
+## Refs & Sources:  
+
 * [Confluent docs](https://docs.confluent.io/current/schema-registry/docs/api.html#overview)
 * [Stephane Maarek](https://www.udemy.com/confluent-schema-registry/learn/v4/content)
+* [REST Proxy](https://docs.confluent.io/current/kafka-rest/docs/index.html)
 
  
