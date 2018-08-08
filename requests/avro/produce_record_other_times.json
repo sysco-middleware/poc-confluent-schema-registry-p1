@@ -1,0 +1,12 @@
+{
+  "value_schema_id": "?",
+  "records": [
+    {
+      "value": {"first_name": "sysco with schema id", "last_name":"middleware with schema id" }
+    },
+    {
+      "value": {"first_name": "nik with schema id", "last_name": "zhevnitksiy with schema id"},
+      "partition": 0
+    }
+  ]
+}

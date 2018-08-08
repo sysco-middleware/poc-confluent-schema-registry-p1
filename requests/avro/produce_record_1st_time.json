@@ -1,0 +1,12 @@
+{
+  "value_schema": "{\"type\": \"record\",\"name\": \"Business\",\"fields\":[{\"name\": \"first_name\", \"type\": \"string\"},{\"name\" :\"last_name\",  \"type\": \"string\"}]}",
+  "records": [
+    {
+      "value": {"first_name": "sysco", "last_name":"middleware" }
+    },
+    {
+      "value": {"first_name": "nik", "last_name": "zhevnitksiy"},
+      "partition": 0
+    }
+  ]
+}

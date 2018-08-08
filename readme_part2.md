@@ -88,7 +88,8 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 5. Commit offset
 
 `NB!`  
-If step on step 4 processing time will be longer than `max.poll.interval.ms` timeout, client will receive `500`.  
+If on step 4 processing time will be longer than `max.poll.interval.ms` timeout, client will receive `500`.  
+If on step 5 the post body is empty, it commits all the records that have been fetched by the consumer instance.
 If REST Proxy fail, it will try to close all consumers.
 
 
@@ -102,7 +103,31 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 
 ```
 
+### Avro
 
+The REST Proxy has primary support for Avro as it is directly connected to the Schema Registry.
+Record can be send with `schema_value` (contains schema payload) either with `schema_value_id`(only schema id, schema should exists) 
+Example:
+``` 
+POST /topics/topic-avro-records HTTP/1.1
+Host: kafkaproxy.example.com
+Content-Type: application/vnd.kafka.avro.v2+json
+Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/json
+
+{
+  "value_schema": "{\"type\": \"record\",\"name\": \"Business\",\"fields\":[{\"name\": \"first_name\", \"type\": \"string\"},{\"name\" :\"last_name\",  \"type\": \"string\"}]}",
+  "records": [
+    {
+      "value": {"first_name": "sysco", "last_name":"middleware" }
+    },
+    {
+      "value": {"first_name": "nikita", "last_name": "zhevnitksiy"},
+      "partition": 0
+    }
+  ]
+}
+
+```
 
 ## References 
 
