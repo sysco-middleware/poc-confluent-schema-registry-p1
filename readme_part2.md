@@ -1,5 +1,12 @@
 # Confluent schema registry p.2
 
+## Intro
+
+In this article we will take a look at REST of Confluent Schema Registry and Confluent REST Proxy. 
+Communication workflow of schema registry and proxy viewed on diagram.
+
+It is important to mention that Schema registry and REST Proxy can be scaled horizontally. 
+
 ![img](./kakfa_REST_proxy_workflow.png)
 
 ## Plan
@@ -86,6 +93,7 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 3. Get records
 4. Process (depends on application)
 5. Commit offset
+6. \[Optional] Delete, close the consumer with a DELETE to make it leave the group and clean up its resources. 
 
 `NB!`  
 If on step 4 processing time will be longer than `max.poll.interval.ms` timeout, client will receive `500`.  
@@ -107,7 +115,7 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 
 The REST Proxy has primary support for Avro as it is directly connected to the Schema Registry.
 Record can be send with `schema_value` (contains schema payload) either with `schema_value_id`(only schema id, schema should exists) 
-Example:
+
 ``` 
 POST /topics/topic-avro-records HTTP/1.1
 Host: kafkaproxy.example.com
@@ -128,6 +136,10 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 }
 
 ```
+
+Response body with success statusno will contain `value_schema_id` which can be used for futher request instead of `value_schema` field.
+
+`NB!` Note that if you use Avro values you must also use Avro keys, but the schemas can differ. 
 
 ## References 
 
