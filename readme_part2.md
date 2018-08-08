@@ -1,18 +1,24 @@
 # Confluent schema registry p.2
 
-## Plan
+![img](./kakfa_REST_proxy_workflow.png)
 
-Rest proxy
+## Plan
+`Part A`
+1. Schema registry
+* Subjects
+
+`Part B`  
+1. Role of Kafka REST Proxy
+2. Operations: 
 * Topic operations
 * Produce: binary, json, avro
 * Consume: binary, json, avro
-* Scaling  
  
+ 
+## Part A
+
 Schema registry
-* Subjects
-
-[Kafka REST Proxy](https://docs.confluent.io/current/kafka-rest/docs/index.html)
-
+todo: REST subjects -> ref to [K_GO](https://github.com/sysco-middleware/KGO) project
 
 ### Request
 
@@ -32,7 +38,7 @@ Topics operations are read-only.
 `GET /topics`  
 `GET /topics/{name}`
 
-### Produce
+Produce & Consume operations: 
 
 | Type        | Format            |
 | ------------- |:-------------:  |
@@ -42,7 +48,9 @@ Topics operations are read-only.
 
 `!NB` Produce request supports batching
 
-#### Binary
+### Binary
+
+#### Produce
 
 [base64 encoder/decoder](http://www.utilities-online.info/base64),  data can be send in base64 encoded format. 
 
@@ -70,4 +78,33 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
   ]
 
 ```
+
+#### Consume
+
+1. Create consumer (once)
+2. Use returned by REST Proxy URL for consuming
+3. Get records
+4. Process (depends on application)
+5. Commit offset
+
+`NB!`  
+If step on step 4 processing time will be longer than `max.poll.interval.ms` timeout, client will receive `500`.  
+If REST Proxy fail, it will try to close all consumers.
+
+
+### Json
+
+Produce & Consume operations with json are similar to binaries, the main differences are headers.
+
+```
+Content-Type: application/vnd.kafka.json.v2+json
+Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/json
+
+```
+
+
+
+## References 
+
+[Kafka REST Proxy](https://docs.confluent.io/current/kafka-rest/docs/index.html)
 
