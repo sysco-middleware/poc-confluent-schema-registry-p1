@@ -1,4 +1,9 @@
 # Confluent schema registry p.2
+! TODO:
+* REST Confluent Schema Registry
+* Additional 
+* maybe remove 2.1, 2.2, 2.3 (leave only Postman examples)
+* Save Postman import as a file
 
 ## Intro
 
@@ -21,11 +26,11 @@ Both components are parts of the Confluent Open Source distribution.
   2.3 avro
 3. Additional. 
 
-##1. Confluent Schema registry. REST.
+## 1. Confluent Schema registry. REST.
 
 todo: REST subjects -> ref to [K_GO](https://github.com/sysco-middleware/KGO) project
 
-##2. Confluent REST Proxy.
+## 2. Confluent REST Proxy.
 
 [Postman Collection](https://www.getpostman.com/collections/a1b9f77045de1df58314), please import to Postman.
 
@@ -41,16 +46,16 @@ If Confluent REST Proxy fail, it will try to close all consumers.
 `Content-Type:application/kafka.[.embedded_format].[api_version]+[serialization_format]`  
 
 
-|                                     |                     |
-| -------------                       |:-------------:      |
-| embedded_format                     | binary, json, avro  |
-| api_version                         | v2                  |
-| serialization_format                | json                |
+|                         |                     |
+| -------------           |:-------------:      |
+| embedded_format         | binary, json, avro  |
+| api_version             | v2                  |
+| serialization_format    | json                |
 
 
 Produce & Consume operations: 
 
-| Type        | Format            |
+| Type          | Format          |
 | ------------- |:-------------:  |
 | binary        | bytes (base64)  |
 | json          | json            |
@@ -75,7 +80,7 @@ Steps:
 If on step 4 processing time will be longer than `max.poll.interval.ms` timeout, client will receive `500`.  
 If on step 5 the post body is empty, it commits all the records that have been fetched by the consumer instance.
 
-###2.1 Binary
+### 2.1 Binary
 
 **Produce**
 
@@ -106,14 +111,8 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 
 **Consume**  
 
-1. Create consumer (once)
-2. Use returned by REST Proxy URL for consuming
-3. Get records
-4. Process (depends on application)
-5. Commit offset
-6. Delete, close the consumer with a DELETE to make it leave the group and clean up its resources. 
 
-### Json
+### 2.2 Json
 
 Produce & Consume operations with json are similar to binaries, the main differences are headers.
 
@@ -123,7 +122,7 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 
 ```
 
-### Avro
+### 2.3 Avro
 
 The REST Proxy has primary support for Avro as it is directly connected to the Schema Registry.
 Record can be send with `schema_value` (contains schema payload) either with `schema_value_id`(only schema id, schema should exists) 
@@ -154,7 +153,7 @@ Response body with success statusno will contain `value_schema_id` which can be 
 `NB!` Note that if you use Avro values you must also use Avro keys, but the schemas can differ. 
 
 
-##3. Additional 
+## 3. Additional 
 
 !TODO
  
