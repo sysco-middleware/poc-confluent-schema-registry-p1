@@ -5,45 +5,48 @@
 In this article we will take a look at REST of Confluent Schema Registry and Confluent REST Proxy. 
 Communication workflow of schema registry and proxy viewed on diagram.
 
-It is important to mention that Schema registry and REST Proxy can be scaled horizontally. 
+It is important to mention that Confluent Schema Registry and REST Proxy can be scaled horizontally and be part of cluster. 
+Both components are parts of the Confluent Open Source distribution.
 
 ![img](./kakfa_REST_proxy_workflow.png)
 
-## Plan
-`Part A`
-1. Schema registry
-* Subjects
+[Source](https://www.hackersdenabi.net/wp-content/uploads/2018/03/Avro.png)
 
-`Part B`  
-1. Role of Kafka REST Proxy
-2. Operations: 
-* Topic operations
-* Produce: binary, json, avro
-* Consume: binary, json, avro
- 
- 
-## Part A
+## Content
 
-Schema registry
+1. Confluent Schema registry. REST. 
+2. Confluent REST Proxy.
+  2.1 binary
+  2.2 json 
+  2.3 avro
+3. Additional. 
+
+##1. Confluent Schema registry. REST.
+
 todo: REST subjects -> ref to [K_GO](https://github.com/sysco-middleware/KGO) project
 
-### Request
+##2. Confluent REST Proxy.
 
-#### Content-Type
+[Postman Collection](https://www.getpostman.com/collections/a1b9f77045de1df58314), please import to Postman.
 
-`application/kafka.[.embedded_format].[api_version]+[serialization_format]`
+> The proxy provides a RESTful interface to a Kafka cluster, making it easy to produce and consume messages, view the state of the cluster, and perform administrative actions without using the native Kafka protocol or clients.
+
+Important to set correct headers, when produce or consume records, depends on record format.
+If Confluent REST Proxy fail, it will try to close all consumers.
+
+**Request Headers**  
+
+`Accept: application/vnd.kafka.v2+json`  
+
+`Content-Type:application/kafka.[.embedded_format].[api_version]+[serialization_format]`  
 
 
-Embedded format types:  `binary, json, avro`  
-Api version is:         `v2`  
-Serialization format:   `json`  
+|                                     |                     |
+| -------------                       |:-------------:      |
+| embedded_format                     | binary, json, avro  |
+| api_version                         | v2                  |
+| serialization_format                | json                |
 
-
-### Topic operations (only_read)
-
-Topics operations are read-only.   
-`GET /topics`  
-`GET /topics/{name}`
 
 Produce & Consume operations: 
 
@@ -53,15 +56,30 @@ Produce & Consume operations:
 | json          | json            |
 | avro          | encoded json    |
 
-`!NB` Produce request supports batching
+*Producer*
+* Produce request supports batching. 
+* Partition can be specified for record(s) in batch.
 
-### Binary
+*Consumer*   
 
-#### Produce
+Consuming kafka records via HTTP 1.1 is a bit complex. 
 
-[base64 encoder/decoder](http://www.utilities-online.info/base64),  data can be send in base64 encoded format. 
+Steps:
+1. Create consumer instance for specific consumer group. Use (*returned by REST Proxy*) URL for next step.
+2. Subscribe consumer to kafka topic(s).
+3. Consume records. 
+4. Commit offset.
+5. Delete consumer instance, close the consumer with a DELETE to make it leave the group and clean up its resources. 
 
-Partition can be specified. 
+`NB!`  
+If on step 4 processing time will be longer than `max.poll.interval.ms` timeout, client will receive `500`.  
+If on step 5 the post body is empty, it commits all the records that have been fetched by the consumer instance.
+
+###2.1 Binary
+
+**Produce**
+
+[base64 encoder/decoder](http://www.utilities-online.info/base64),  data will be send in base64 encoded format.
 
 ```
 POST /topics/topic-binary-records HTTP/1.1
@@ -86,20 +104,14 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 
 ```
 
-#### Consume
+**Consume**  
 
 1. Create consumer (once)
 2. Use returned by REST Proxy URL for consuming
 3. Get records
 4. Process (depends on application)
 5. Commit offset
-6. \[Optional] Delete, close the consumer with a DELETE to make it leave the group and clean up its resources. 
-
-`NB!`  
-If on step 4 processing time will be longer than `max.poll.interval.ms` timeout, client will receive `500`.  
-If on step 5 the post body is empty, it commits all the records that have been fetched by the consumer instance.
-If REST Proxy fail, it will try to close all consumers.
-
+6. Delete, close the consumer with a DELETE to make it leave the group and clean up its resources. 
 
 ### Json
 
@@ -140,6 +152,22 @@ Accept: application/vnd.kafka.v2+json, application/vnd.kafka+json, application/j
 Response body with success statusno will contain `value_schema_id` which can be used for futher request instead of `value_schema` field.
 
 `NB!` Note that if you use Avro values you must also use Avro keys, but the schemas can differ. 
+
+
+##3. Additional 
+
+!TODO
+ 
+Confluent REST Proxy provides most of the functionality of the Java producers and consumers.
+Most metadata about the cluster could be accessible via `GET` requests. 
+
+**Topics**  
+Topics operations are read-only.   
+`GET /topics`  
+`GET /topics/{name}`
+
+
+
 
 ## References 
 
