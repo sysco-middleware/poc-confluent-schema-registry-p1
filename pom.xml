@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>no.sysco.middleware.poc</groupId>
@@ -11,6 +11,7 @@
   <modules>
     <module>version1</module>
     <module>version2</module>
+    <module>jaxbapproach</module>
   </modules>
 
 
@@ -18,6 +19,11 @@
     <avro.version>1.8.2</avro.version>
     <kafka.version>1.0.0</kafka.version>
     <confluent.version>3.3.1</confluent.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
   </properties>
 
   <!--necessary to resolve confluent dependencies-->

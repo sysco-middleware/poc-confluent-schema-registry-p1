@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2011 sp1 (http://www.altova.com) von System (Scientific Games International) bearbeitet -->
+<!--
+
+XSD schema for NGE_DWH_WAGERS
+
+part of NTNGE_File_Interfaces_DWH_V009_XSDs_and_XML_examples.zip
+
+last edit: 2011-04-11 08:20
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="DWHWagers">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Wager" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Wager">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="WagerType"/>
+				<xs:element ref="WagerState"/>
+				<xs:element ref="WagerId"/>
+				<xs:element ref="TxnId"/>
+				<xs:element ref="SalesChannelNo"/>
+				<xs:element ref="TransactionDate"/>
+				<xs:element ref="PaymBalPeriodId"/>
+				<xs:element ref="WagerPrice"/>
+				<xs:element ref="CouponNo"/>
+				<xs:element ref="PlayMethod"/>
+				<xs:element ref="TicketMarketingCodeNo"/>
+				<xs:element ref="PlayerNumber"/>
+				<xs:element ref="PlayerCardNumber"/>
+				<xs:element ref="PlayerMarketingCode"/>
+				<xs:element ref="AdvanceDate" minOccurs="0"/>
+				<xs:element ref="GrassrootsReceiver" minOccurs="0"/>
+				<xs:element ref="ProductCardNo" minOccurs="0"/>
+				<xs:element ref="ProductCardId" minOccurs="0"/>
+				<xs:element ref="PosData" minOccurs="0"/>
+				<xs:element ref="WagerOrderNo" minOccurs="0"/>
+				<xs:element ref="WagerOrderLineNo" minOccurs="0"/>
+				<xs:element ref="RollbackDate" minOccurs="0"/>
+				<xs:element ref="GameRecords"/>
+				<xs:element ref="WagerCancel" minOccurs="0"/>
+				<xs:element ref="SyndicateBetData" minOccurs="0"/>
+				<xs:element ref="AgentSyndicateBetData" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WagerType" type="xs:string"/>
+	<xs:element name="WagerState" type="xs:string"/>
+	<xs:element name="WagerId" type="xs:string"/>
+	<xs:element name="TxnId" type="xs:string"/>
+	<xs:element name="SalesChannelNo" type="xs:int"/>
+	<xs:element name="TransactionDate" type="xs:dateTime"/>
+	<xs:element name="PaymBalPeriodId" type="xs:long"/>
+	<xs:element name="WagerPrice" type="xs:double"/>
+	<xs:element name="CouponNo" type="xs:int"/>
+	<xs:element name="PlayMethod" type="xs:int"/>
+	<xs:element name="TicketMarketingCodeNo" type="xs:int"/>
+	<xs:element name="PlayerNumber" type="xs:string"/>
+	<xs:element name="PlayerCardNumber" type="xs:string"/>
+	<xs:element name="PlayerMarketingCode" type="xs:int"/>
+	<xs:element name="AdvanceDate" type="xs:dateTime"/>
+	<xs:element name="GrassrootsReceiver" type="xs:int"/>
+	<xs:element name="ProductCardNo" type="xs:string"/>
+	<xs:element name="ProductCardId">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PCGameNo" minOccurs="0"/>
+				<xs:element ref="PCBatchNo" minOccurs="0"/>
+				<xs:element ref="PCDistCode" minOccurs="0"/>
+				<xs:element ref="PCNo" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PosData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="JurisdictionId"/>
+				<xs:element ref="ChainId" minOccurs="0"/>
+				<xs:element ref="PosId" minOccurs="0"/>
+				<xs:element ref="DeviceId" minOccurs="0"/>
+				<xs:element ref="DevicesUserId" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="JurisdictionId" type="xs:int"/>
+	<xs:element name="ChainId" type="xs:string"/>
+	<xs:element name="PosId" type="xs:string"/>
+	<xs:element name="DeviceId" type="xs:string"/>
+	<xs:element name="DevicesUserId" type="xs:int"/>
+	<xs:element name="WagerOrderNo" type="xs:long"/>
+	<xs:element name="WagerOrderLineNo" type="xs:int"/>
+	<xs:element name="RollbackDate" type="xs:dateTime"/>
+	<xs:element name="GameRecords">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GameRecord" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GameRecord">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GameNo"/>
+				<xs:element ref="DrawCount"/>
+				<xs:element ref="FirstDrawNo"/>
+				<xs:element ref="FirstDrawDate"/>
+				<xs:element ref="LastDrawNo"/>
+				<xs:element ref="LastDrawDate"/>
+				<xs:element ref="GameStakeAmount"/>
+				<xs:element ref="Panels"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GameNo" type="xs:int"/>
+	<xs:element name="DrawCount" type="xs:int"/>
+	<xs:element name="FirstDrawNo" type="xs:int"/>
+	<xs:element name="FirstDrawDate" type="xs:dateTime"/>
+	<xs:element name="LastDrawNo" type="xs:int"/>
+	<xs:element name="LastDrawDate" type="xs:dateTime"/>
+	<xs:element name="GameStakeAmount" type="xs:double"/>
+	<xs:element name="Panels">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Panel" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Panel">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PlayTypeNo"/>
+				<xs:element ref="StakeMultiplier"/>
+				<xs:element ref="IsCorrected"/>
+				<xs:element ref="QpMarksCount"/>
+				<xs:element ref="Selection"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PlayTypeNo" type="xs:int"/>
+	<xs:element name="StakeMultiplier" type="xs:int"/>
+	<xs:element name="IsCorrected" type="boolean"/>
+	<xs:element name="QpMarksCount" type="xs:int"/>
+	<xs:element name="Selection">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="No" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="No" type="xs:string"/>
+	<xs:element name="DrawNo" type="xs:int"/>
+	<xs:element name="DrawDate" type="xs:dateTime"/>
+	<xs:element name="WagerCancel">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TransactionDate"/>
+				<xs:element ref="TxnId"/>
+				<xs:element ref="IsHotlineCancel"/>
+				<xs:element ref="CancelUser" minOccurs="0"/>
+				<xs:element ref="CancelTxnGenerated"/>
+				<xs:element ref="PosData" minOccurs="0"/>
+				<xs:element ref="RollbackDate" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IsHotlineCancel" type="boolean"/>
+	<xs:element name="CancelUser" type="xs:string"/>
+	<xs:element name="CancelTxnGenerated" type="xs:string"/>
+	<xs:simpleType name="boolean">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="SyndicateBetData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SyndicateBetTypeNo"/>
+				<xs:element ref="SyndicateBetSystemId"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AgentSyndicateBetData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AgentSyndSystemId"/>
+				<xs:element ref="NoOfShares"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SyndicateBetTypeNo" type="xs:integer"/>
+	<xs:element name="SyndicateBetSystemId" type="xs:integer"/>
+	<xs:element name="AgentSyndSystemId" type="xs:integer"/>
+	<xs:element name="NoOfShares" type="xs:integer"/>
+	<xs:element name="PCGameNo" type="xs:integer"/>
+	<xs:element name="PCBatchNo" type="xs:integer"/>
+	<xs:element name="PCNo" type="xs:integer"/>
+	<xs:element name="PCDistCode" type="xs:integer"/>
+</xs:schema>
