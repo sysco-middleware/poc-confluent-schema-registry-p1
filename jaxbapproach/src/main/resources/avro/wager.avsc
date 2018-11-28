@@ -1,0 +1,346 @@
+{
+  "type": "record",
+  "name": "Wager",
+  "namespace": "no.sysco.middleware.poc.kafkaschemaregistry.jaxb.avro",
+  "fields": [
+    {
+      "name": "wagerType",
+      "type": "string"
+    },
+    {
+      "name": "wagerState",
+      "type": "string"
+    },
+    {
+      "name": "wagerId",
+      "type": "string"
+    },
+    {
+      "name": "txnId",
+      "type": "string"
+    },
+    {
+      "name": "salesChannelNo",
+      "type": "int"
+    },
+    {
+      "name": "transactionDate",
+      "type": {
+        "type": "record",
+        "name": "XMLGregorianCalendar",
+        "namespace": "javax.xml.datatype",
+        "fields": []
+      }
+    },
+    {
+      "name": "paymBalPeriodId",
+      "type": "long"
+    },
+    {
+      "name": "wagerPrice",
+      "type": "double"
+    },
+    {
+      "name": "couponNo",
+      "type": "int"
+    },
+    {
+      "name": "playMethod",
+      "type": "int"
+    },
+    {
+      "name": "ticketMarketingCodeNo",
+      "type": "int"
+    },
+    {
+      "name": "playerNumber",
+      "type": "string"
+    },
+    {
+      "name": "playerCardNumber",
+      "type": "string"
+    },
+    {
+      "name": "playerMarketingCode",
+      "type": "int"
+    },
+    {
+      "name": "advanceDate",
+      "type": "javax.xml.datatype.XMLGregorianCalendar"
+    },
+    {
+      "name": "grassrootsReceiver",
+      "type": "int"
+    },
+    {
+      "name": "productCardNo",
+      "type": "string"
+    },
+    {
+      "name": "productCardId",
+      "type": {
+        "type": "record",
+        "name": "ProductCardId",
+        "fields": [
+          {
+            "name": "pcGameNo",
+            "type": {
+              "type": "string",
+              "java-class": "java.math.BigInteger"
+            }
+          },
+          {
+            "name": "pcBatchNo",
+            "type": {
+              "type": "string",
+              "java-class": "java.math.BigInteger"
+            }
+          },
+          {
+            "name": "pcDistCode",
+            "type": {
+              "type": "string",
+              "java-class": "java.math.BigInteger"
+            }
+          },
+          {
+            "name": "pcNo",
+            "type": {
+              "type": "string",
+              "java-class": "java.math.BigInteger"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "posData",
+      "type": {
+        "type": "record",
+        "name": "PosData",
+        "fields": [
+          {
+            "name": "jurisdictionId",
+            "type": "int"
+          },
+          {
+            "name": "chainId",
+            "type": "string"
+          },
+          {
+            "name": "posId",
+            "type": "string"
+          },
+          {
+            "name": "deviceId",
+            "type": "string"
+          },
+          {
+            "name": "devicesUserId",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "wagerOrderNo",
+      "type": "long"
+    },
+    {
+      "name": "wagerOrderLineNo",
+      "type": "int"
+    },
+    {
+      "name": "rollbackDate",
+      "type": "javax.xml.datatype.XMLGregorianCalendar"
+    },
+    {
+      "name": "gameRecords",
+      "type": {
+        "type": "record",
+        "name": "GameRecords",
+        "fields": [
+          {
+            "name": "gameRecord",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "name": "GameRecord",
+                "fields": [
+                  {
+                    "name": "gameNo",
+                    "type": "int"
+                  },
+                  {
+                    "name": "drawCount",
+                    "type": "int"
+                  },
+                  {
+                    "name": "firstDrawNo",
+                    "type": "int"
+                  },
+                  {
+                    "name": "firstDrawDate",
+                    "type": "javax.xml.datatype.XMLGregorianCalendar"
+                  },
+                  {
+                    "name": "lastDrawNo",
+                    "type": "int"
+                  },
+                  {
+                    "name": "lastDrawDate",
+                    "type": "javax.xml.datatype.XMLGregorianCalendar"
+                  },
+                  {
+                    "name": "gameStakeAmount",
+                    "type": "double"
+                  },
+                  {
+                    "name": "panels",
+                    "type": {
+                      "type": "record",
+                      "name": "Panels",
+                      "fields": [
+                        {
+                          "name": "panel",
+                          "type": {
+                            "type": "array",
+                            "items": {
+                              "type": "record",
+                              "name": "Panel",
+                              "fields": [
+                                {
+                                  "name": "playTypeNo",
+                                  "type": "int"
+                                },
+                                {
+                                  "name": "stakeMultiplier",
+                                  "type": "int"
+                                },
+                                {
+                                  "name": "isCorrected",
+                                  "type": "int"
+                                },
+                                {
+                                  "name": "qpMarksCount",
+                                  "type": "int"
+                                },
+                                {
+                                  "name": "selection",
+                                  "type": {
+                                    "type": "record",
+                                    "name": "Selection",
+                                    "fields": [
+                                      {
+                                        "name": "no",
+                                        "type": {
+                                          "type": "array",
+                                          "items": "string",
+                                          "java-class": "java.util.List"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            },
+                            "java-class": "java.util.List"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "java-class": "java.util.List"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "wagerCancel",
+      "type": {
+        "type": "record",
+        "name": "WagerCancel",
+        "fields": [
+          {
+            "name": "transactionDate",
+            "type": "javax.xml.datatype.XMLGregorianCalendar"
+          },
+          {
+            "name": "txnId",
+            "type": "string"
+          },
+          {
+            "name": "isHotlineCancel",
+            "type": "int"
+          },
+          {
+            "name": "cancelUser",
+            "type": "string"
+          },
+          {
+            "name": "cancelTxnGenerated",
+            "type": "string"
+          },
+          {
+            "name": "posData",
+            "type": "PosData"
+          },
+          {
+            "name": "rollbackDate",
+            "type": "javax.xml.datatype.XMLGregorianCalendar"
+          }
+        ]
+      }
+    },
+    {
+      "name": "syndicateBetData",
+      "type": {
+        "type": "record",
+        "name": "SyndicateBetData",
+        "fields": [
+          {
+            "name": "syndicateBetTypeNo",
+            "type": {
+              "type": "string",
+              "java-class": "java.math.BigInteger"
+            }
+          },
+          {
+            "name": "syndicateBetSystemId",
+            "type": {
+              "type": "string",
+              "java-class": "java.math.BigInteger"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "agentSyndicateBetData",
+      "type": {
+        "type": "record",
+        "name": "AgentSyndicateBetData",
+        "fields": [
+          {
+            "name": "agentSyndSystemId",
+            "type": {
+              "type": "string",
+              "java-class": "java.math.BigInteger"
+            }
+          },
+          {
+            "name": "noOfShares",
+            "type": {
+              "type": "string",
+              "java-class": "java.math.BigInteger"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
